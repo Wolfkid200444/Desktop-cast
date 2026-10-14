@@ -1,0 +1,11 @@
+.state/
+__pycache__/
+*.pyc
+*.spec
+build/
+dist/
+artifacts/
+.venv/
+*-preview.png
+preview.png
+kwin-modifiers/package/contents/ui/bridge/*.so

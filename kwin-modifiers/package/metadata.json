@@ -1,0 +1,12 @@
+{
+  "KPackageStructure": "KWin/Effect",
+  "KPlugin": {
+    "Id": "desktopcast-modifiers",
+    "Name": "Desktop Cast Ctrl bridge",
+    "Description": "Expose only Ctrl held/released state to Desktop Cast for click-through recovery.",
+    "License": "GPL-3.0-or-later",
+    "EnabledByDefault": false
+  },
+  "X-Plasma-API": "declarativescript",
+  "X-Plasma-MainScript": "ui/main.qml"
+}

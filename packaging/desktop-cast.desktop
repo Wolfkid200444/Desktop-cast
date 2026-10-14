@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Desktop Cast
+Comment=Animated companions for your Wayland desktop
+Exec=desktop-cast
+Icon=desktop-cast
+Terminal=false
+Categories=Utility;Graphics;
+StartupWMClass=desktop-cast
