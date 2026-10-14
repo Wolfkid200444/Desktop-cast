@@ -10,7 +10,7 @@ class StoreTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         os.environ['DESKTOP_CAST_DATA'] = self.temp.name
-        import store
+        from desktop_cast import store
         self.store = importlib.reload(store)
         self.store.initialize()
 

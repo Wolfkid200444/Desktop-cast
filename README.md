@@ -27,7 +27,7 @@ Right-click a desktop character to open the native control panel:
 - Change width, FPS, rotation, and horizontal / vertical flip while running.
 - Reset controls, close the panel, or close that character.
 
-Drag an unlocked character to move it within its screen. Scroll over a character to resize it. Input passes through outside character bounding rectangles; transparent pixels inside those rectangles normally receive input.
+Drag an unlocked character to move it across monitors or partly beyond a screen edge. Characters spanning adjacent monitors render on both. Choose a monitor in Library and use **Center on screen** to move or recover the selected running character. Scroll over a character to resize it. Input passes through outside character bounding rectangles; transparent pixels inside those rectangles normally receive input.
 
 **Click-through** removes the whole character from the input region, without an on-character button. With the optional KDE helper installed, **hold Ctrl and right-click the character** to reopen its menu. Holding Ctrl temporarily restores character input; releasing it restores click-through. The compact control panel is 320 pixels wide with a separate **Edit live animation** page for size, FPS and rotation. Click outside the panel to dismiss it.
 
@@ -72,12 +72,12 @@ Tests cover alpha/timing, cache/import behavior, atomic scene changes, Workshop 
 
 ## KWin Ctrl helper
 
-The helper source is in `kwin-modifiers/`. The installed effect is `~/.local/share/kwin/effects/desktopcast-modifiers`. It is not enabled automatically at login; Desktop Cast loads it and unloads the instance it owns on exit. No KWin restart or system package changes are needed for the initial install.
+The helper source is in `integrations/kwin-modifiers/`. The installed effect is `~/.local/share/kwin/effects/desktopcast-modifiers`. It is not enabled automatically at login; Desktop Cast loads it and unloads the instance it owns on exit. No KWin restart or system package changes are needed for the initial install.
 
 The native helper is tied to the installed KWin version. Desktop Cast checks the installed and running KWin versions against the helper build version before loading it. After a KWin update, rebuild with the matching development headers and restart the desktop session if the running KWin is older than the installed headers:
 
 ```sh
-./kwin-modifiers/install.sh
+./integrations/kwin-modifiers/install.sh
 ```
 
 Build dependencies are CMake, a C++ compiler, Qt6 development files, and KWin development headers. If the helper is unavailable, app-side Controls and Ctrl+E remain available.
@@ -92,7 +92,19 @@ tray, closing exits cleanly instead of leaving an inaccessible process.
 
 ## Versions and packages
 
-Current version: 0.1.0. The version lives in VERSION and can be queried with
+Current version: 0.2.0. The version lives in VERSION and can be queried with
 `python3 app.py --version`. GitHub Actions tests changes and builds AppImage,
 Debian, RPM and portable Linux archives. Tags such as v0.1.0 publish a release.
-See [packaging notes](packaging/README.md) for dependencies and compatibility.
+See [packaging notes](docs/packaging.md) for dependencies and compatibility.
+
+
+## Project layout
+
+- `desktop_cast/`: Python application, library storage, Workshop and media tools.
+- `overlays/`: Wayland character rendering, controls and monitor geometry.
+- `assets/`: theme and application icon.
+- `integrations/kwin-modifiers/`: optional host KWin modifier helper.
+- `tests/`: regression tests.
+- `packaging/`: Linux package builder and desktop entry.
+- `.github/workflows/`: tests, package builds and tagged releases.
+- `docs/`: packaging notes. Local preview images are excluded from Git.

@@ -6,8 +6,8 @@ from PySide6.QtCore import Qt, QSize, QTimer, QProcess, QProcessEnvironment, QUr
 from PySide6.QtGui import QIcon, QDesktopServices
 from PySide6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QPushButton,
     QComboBox, QListWidget, QListWidgetItem, QLabel, QProgressBar, QMessageBox, QListView)
-from store import ROOT
-from workshop import browse, thumbnail
+from .store import ROOT
+from .workshop import browse, thumbnail
 
 
 class WorkshopBrowser(QWidget):
@@ -176,7 +176,7 @@ class WorkshopBrowser(QWidget):
         if getattr(sys, 'frozen', False):
             self.process.start(sys.executable, ['--download', metadata['id']])
         else:
-            self.process.start(sys.executable, [str(ROOT / 'steam_download.py'), metadata['id']])
+            self.process.start(sys.executable, [str(ROOT / 'app.py'), '--download', metadata['id']])
 
     def read_progress(self):
         while self.process.canReadLine():

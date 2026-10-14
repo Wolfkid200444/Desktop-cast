@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 from PIL import Image, ImageOps
 
-ROOT = Path(getattr(sys, '_MEIPASS', Path(__file__).resolve().parent))
+ROOT = Path(getattr(sys, '_MEIPASS', Path(__file__).resolve().parent.parent))
 # Existing source checkouts keep their data. Installed builds use a writable XDG directory.
 _default_data = ROOT / '.state' if (ROOT / '.state').exists() else Path(os.environ.get('XDG_DATA_HOME', Path.home() / '.local/share')) / 'desktop-cast'
 DATA = Path(os.environ.get('DESKTOP_CAST_DATA', _default_data))

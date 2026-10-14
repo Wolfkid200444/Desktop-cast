@@ -2,7 +2,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from PIL import Image
-from media_tools import export_asset
+from desktop_cast.media_tools import export_asset
 class MediaTests(unittest.TestCase):
     def test_export_removes_color_preserves_other_alpha_and_timing(self):
         with tempfile.TemporaryDirectory() as directory:

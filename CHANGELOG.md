@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0
+
+- Organize source, overlays, assets, integrations, tests and documentation into folders.
+- Drag characters partly off-screen or between monitors.
+- Render a character across adjacent monitor edges during movement.
+- Add Center on screen to recover or move the selected running character.
+- Test negative monitor origins and shared drag coordinates.
+
 ## 0.1.0
 
 - Native Wayland desktop characters with a library and Steam Workshop browser.

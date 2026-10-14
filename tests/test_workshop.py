@@ -1,7 +1,7 @@
 import json
 import unittest
 from unittest.mock import patch
-from workshop import parse_page, item_id, details
+from desktop_cast.workshop import parse_page, item_id, details
 
 class WorkshopTests(unittest.TestCase):
     def test_nested_steam_results_and_app_filter(self):
@@ -23,9 +23,9 @@ class WorkshopTests(unittest.TestCase):
         self.assertIsNone(item_id('123; rm anything'))
 
     def test_reject_other_app_and_private_item(self):
-        with patch('workshop.request', return_value=json.dumps({'response':{'publishedfiledetails':[{'result':1,'consumer_app_id':999}]}}).encode()):
+        with patch('desktop_cast.workshop.request', return_value=json.dumps({'response':{'publishedfiledetails':[{'result':1,'consumer_app_id':999}]}}).encode()):
             with self.assertRaisesRegex(ValueError,'animaEngine'): details('123')
-        with patch('workshop.request', return_value=json.dumps({'response':{'publishedfiledetails':[{'result':9}]}}).encode()):
+        with patch('desktop_cast.workshop.request', return_value=json.dumps({'response':{'publishedfiledetails':[{'result':9}]}}).encode()):
             with self.assertRaisesRegex(ValueError,'unavailable'): details('123')
 
     def test_unexpected_page_is_actionable(self):

@@ -1,5 +1,5 @@
 import unittest
-from store import control_values, CONTROL_DEFAULTS
+from desktop_cast.store import control_values, CONTROL_DEFAULTS
 class ControlsTests(unittest.TestCase):
     def test_clamps_speed_size_rotation_and_volume(self):
         self.assertEqual(control_values({'fps':1000,'size':1,'rotation':-900,'volume':2}),

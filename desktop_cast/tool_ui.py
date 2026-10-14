@@ -4,7 +4,7 @@ from pathlib import Path
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (QWidget, QVBoxLayout, QLabel, QPushButton, QHBoxLayout,
     QColorDialog, QInputDialog, QFileDialog, QMessageBox)
-from store import DATA, read, change
+from .store import DATA, read, change
 
 
 class ToolActions:
@@ -26,7 +26,7 @@ class ToolActions:
         if not color.isValid(): return
         tolerance,ok=QInputDialog.getInt(self,'Color tolerance','Color tolerance, 0 for exact matching:',20,0,255)
         if not ok:return
-        from media_tools import export_asset
+        from .media_tools import export_asset
         folder=DATA/'exports'; folder.mkdir(exist_ok=True)
         target=folder/(self.asset['name'][:50]+'-transparent-'+uuid.uuid4().hex[:6]+'.apng')
         self.tool_jobs.append((self.pool.submit(export_asset,self.asset,target,(color.red(),color.green(),color.blue()),tolerance),
@@ -38,7 +38,7 @@ class ToolActions:
         if not source:return
         seconds,ok=QInputDialog.getInt(self,'Video segment','Convert the first how many seconds? 10 FPS, up to 320 pixels.',10,1,60)
         if not ok:return
-        from media_tools import convert_video
+        from .media_tools import convert_video
         self.tool_jobs.append((self.pool.submit(convert_video,source,seconds),'Video converted. Adding the animation…',True))
         self.statusBar().showMessage('Converting video to APNG…')
 

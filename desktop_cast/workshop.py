@@ -6,7 +6,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlencode, urlparse, parse_qs
 from urllib.request import Request, urlopen
-from store import DATA
+from .store import DATA
 
 APP_ID = 3474900
 

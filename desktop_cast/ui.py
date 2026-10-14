@@ -4,7 +4,7 @@ from PySide6.QtGui import QKeySequence, QShortcut
 from PySide6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QComboBox,
     QLineEdit, QListWidget, QListView, QAbstractItemView, QSplitter, QScrollArea, QSlider,
     QSpinBox, QStackedWidget, QSizePolicy)
-from store import read
+from .store import read
 
 
 def button(text, callback, kind=None):
@@ -50,7 +50,7 @@ def build_ui(w):
     navigation.addWidget(QLabel('New characters'))
     w.layer = QComboBox(); w.layer.addItems(['Above windows', 'On desktop'])
     w.layer.setCurrentIndex(1 if read('scene').get('layer') == 'desktop' else 0)
-    w.layer.currentIndexChanged.connect(lambda i: __import__('store').change('scene', lambda d: d.update(layer='desktop' if i else 'overlay')))
+    w.layer.currentIndexChanged.connect(lambda i: __import__('desktop_cast.store', fromlist=['*']).change('scene', lambda d: d.update(layer='desktop' if i else 'overlay')))
     navigation.addWidget(w.layer)
     w.hide_button = button('Hide characters', w.toggle_visibility); navigation.addWidget(w.hide_button)
     tray_hint = QLabel('Closing the window keeps characters running in the tray.')
@@ -103,20 +103,20 @@ def build_ui(w):
     scroll = QScrollArea(); scroll.setWidgetResizable(True); scroll.setWidget(side); scroll.setMinimumWidth(255); scroll.setMaximumWidth(290)
     split.addWidget(scroll); split.setSizes([650,270]); page.addWidget(split,1)
     running = QHBoxLayout(); running.addWidget(QLabel('Running characters')); running.addStretch()
-    running.addWidget(button('Controls…',w.show_controls)); running.addWidget(button('Close selected',w.remove_selected))
-    running.addWidget(button('Clear desktop',lambda: __import__('store').change('scene',lambda d:d.update(items=[]))))
+    running.addWidget(button('Center on screen',w.center_selected)); running.addWidget(button('Controls…',w.show_controls)); running.addWidget(button('Close selected',w.remove_selected))
+    running.addWidget(button('Clear desktop',lambda: __import__('desktop_cast.store', fromlist=['*']).change('scene',lambda d:d.update(items=[]))))
     page.addLayout(running)
     w.active = QListWidget(); w.active.setMaximumHeight(72); page.addWidget(w.active)
     w.tabs.addTab(library_page,'Library')
     workshop_placeholder = QWidget(); w.tabs.addTab(workshop_placeholder,'Workshop')
     def tab_changed(index):
         if index == 1 and not hasattr(w,'workshop_browser'):
-            from workshop_dialog import WorkshopBrowser
+            from .workshop_dialog import WorkshopBrowser
             w.workshop_browser = WorkshopBrowser(w)
             w.workshop_browser.downloaded.connect(w.queue_import)
             w.tabs.removeTab(1); w.tabs.insertTab(1,w.workshop_browser,'Workshop'); w.tabs.setCurrentIndex(1)
     w.tabs.currentChanged.connect(tab_changed)
-    from tool_ui import tools_page, settings_page
+    from .tool_ui import tools_page, settings_page
     w.tabs.addTab(tools_page(w),'Tools'); w.tabs.addTab(settings_page(w),'Settings')
     w.controls_shortcut = QShortcut(QKeySequence('Ctrl+E'),w)
     w.controls_shortcut.activated.connect(w.show_controls)

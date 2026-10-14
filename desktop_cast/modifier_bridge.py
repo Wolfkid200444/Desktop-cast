@@ -3,7 +3,7 @@ from pathlib import Path
 import re
 from PySide6.QtCore import QObject, Slot, SLOT
 from PySide6.QtDBus import QDBusConnection, QDBusInterface, QDBusMessage, QDBusServiceWatcher
-from store import change
+from .store import change
 
 SERVICE = 'org.desktopcast.Modifiers'
 PATH = '/Modifiers'

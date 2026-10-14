@@ -11,10 +11,10 @@ packages declare a quickshell dependency; your distribution may require an extra
 repository for it. FFmpeg is optional for video conversion.
 
 The KWin modifier helper must be built on the target machine against exactly the
-installed KWin version. See ../kwin-modifiers/install.sh. Rebuild after a KWin
+installed KWin version. See ../integrations/kwin-modifiers/install.sh. Rebuild after a KWin
 upgrade. The app otherwise remains usable through the library Controls button.
 
-Flatpak is not shipped in 0.1.0. Its sandbox cannot directly reuse the host
+Flatpak is not shipped in 0.2.0. Its sandbox cannot directly reuse the host
 Quickshell executable and Steam library in the current architecture. A supported
 Flatpak needs a bundled overlay and a separate, narrowly scoped host integration
 for Steam/KWin. A manifest alone would not make those functions work.

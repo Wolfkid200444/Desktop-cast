@@ -6,8 +6,8 @@ import os
 import sys
 import time
 from pathlib import Path
-from workshop import details
-from store import SUPPORTED
+from .workshop import details
+from .store import SUPPORTED
 
 
 def emit(**values):

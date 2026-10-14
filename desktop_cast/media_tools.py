@@ -5,7 +5,7 @@ import tempfile
 import uuid
 from pathlib import Path
 from PIL import Image, ImageChops
-from store import DATA
+from .store import DATA
 
 
 def export_asset(asset, target, color=None, tolerance=0):

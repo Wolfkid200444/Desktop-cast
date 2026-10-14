@@ -8,4 +8,4 @@ artifacts/
 .venv/
 *-preview.png
 preview.png
-kwin-modifiers/package/contents/ui/bridge/*.so
+integrations/kwin-modifiers/package/contents/ui/bridge/*.so

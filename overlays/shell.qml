@@ -1,3 +1,4 @@
+import "geometry.js" as Geometry
 import QtQuick
 import QtQml
 import Quickshell
@@ -15,6 +16,19 @@ ShellRoot {
     property real controlY: 100
     property real requestNonce: 0
     property var queue: []
+    property var dragState: ({})
+    function placement(character, output) {
+        return Geometry.placement(character, Array.from(Quickshell.screens), output, dragState);
+    }
+    function previewMove(identity, output, x, y) {
+        dragState = {id: identity, x: output.x + x, y: output.y + y, pending: false};
+    }
+    function finishMove(character, output, x, y, pointerX, pointerY) {
+        const values = Geometry.finishMove(character, Array.from(Quickshell.screens), output,
+            x, y, output.x + pointerX, output.y + pointerY);
+        dragState = {id: character.id, x: output.x + x, y: output.y + y, pending: true};
+        edit(character.id, "move", values);
+    }
     readonly property var controlItem: scene.items.find(item => item.id === activeId) || ({})
     function openControls(identity, screenName, x, y) {
         activeId = identity; controlScreen = screenName; controlX = x; controlY = y;
@@ -38,7 +52,18 @@ ShellRoot {
         watchChanges: true
         onFileChanged: reload()
         onLoaded: {
-            try { shell.scene = JSON.parse(text()); }
+            try {
+                shell.scene = JSON.parse(text());
+                if (shell.dragState.pending) {
+                    const saved = shell.scene.items.find(item => item.id === shell.dragState.id);
+                    if (!saved) shell.dragState = ({});
+                    else {
+                        const origin = Geometry.originFor(Array.from(Quickshell.screens), saved.screen);
+                        if (Math.abs(origin.x + saved.x - shell.dragState.x) < 1 &&
+                            Math.abs(origin.y + saved.y - shell.dragState.y) < 1) shell.dragState = ({});
+                    }
+                }
+            }
             catch (error) { console.error("Cannot read character scene:", error); }
         }
     }
@@ -90,7 +115,7 @@ ShellRoot {
                         id: characterModel
                         dynamicRoles: true
                         function sync() {
-                            const incoming = shell.scene.items.filter(item => item.screen === output.modelData.name && (item.layer || shell.scene.layer || "overlay") === characterWindow.modelData);
+                            const incoming = shell.scene.items.filter(item => (item.layer || shell.scene.layer || "overlay") === characterWindow.modelData);
                             for (let i = count - 1; i >= 0; i--) {
                                 if (!incoming.some(item => item.id === get(i).characterData.id)) remove(i);
                             }

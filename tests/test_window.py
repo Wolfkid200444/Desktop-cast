@@ -5,7 +5,7 @@ import unittest
 from unittest.mock import Mock, patch
 from PySide6.QtGui import QCloseEvent
 from PySide6.QtWidgets import QApplication, QMainWindow
-from app import Window
+from desktop_cast.app import Window
 
 class WindowTests(unittest.TestCase):
     @classmethod
@@ -27,7 +27,7 @@ class WindowTests(unittest.TestCase):
         window = self.make_window()
         window.show()
         event = QCloseEvent()
-        with patch('app.QSystemTrayIcon.isSystemTrayAvailable', return_value=True):
+        with patch('desktop_cast.app.QSystemTrayIcon.isSystemTrayAvailable', return_value=True):
             window.closeEvent(event)
         self.assertFalse(event.isAccepted())
         self.assertFalse(window.isVisible())
@@ -38,7 +38,7 @@ class WindowTests(unittest.TestCase):
     def test_no_tray_closes_cleanly(self):
         window = self.make_window()
         event = QCloseEvent()
-        with patch('app.QSystemTrayIcon.isSystemTrayAvailable', return_value=False):
+        with patch('desktop_cast.app.QSystemTrayIcon.isSystemTrayAvailable', return_value=False):
             window.closeEvent(event)
         self.assertTrue(event.isAccepted())
         window.overlay.terminate.assert_called_once()

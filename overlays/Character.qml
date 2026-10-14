@@ -13,8 +13,11 @@ Item {
     property real angle: (character.rotation || 0) * Math.PI / 180
     width: Math.abs(baseWidth * Math.cos(angle)) + Math.abs(baseHeight * Math.sin(angle))
     height: Math.abs(baseWidth * Math.sin(angle)) + Math.abs(baseHeight * Math.cos(angle))
-    x: Math.max(0, Math.min(panel.width - width, character.x))
-    y: Math.max(0, Math.min(panel.height - height, character.y))
+    property var placement: controller.placement(character, panel.screen)
+    x: placement.x
+    y: placement.y
+    onXChanged: if (mouse && mouse.drag.active) controller.previewMove(character.id, panel.screen, x, y)
+    onYChanged: if (mouse && mouse.drag.active) controller.previewMove(character.id, panel.screen, x, y)
     Image {
         anchors.centerIn: parent
         width: pet.baseWidth; height: pet.baseHeight
@@ -51,8 +54,8 @@ Item {
     onCharacterChanged: {
         if (sound) sound.sync();
         if (panel && character && !mouse.drag.active) {
-            x = Qt.binding(() => Math.max(0, Math.min(panel.width - width, character.x)));
-            y = Qt.binding(() => Math.max(0, Math.min(panel.height - height, character.y)));
+            x = Qt.binding(() => placement.x);
+            y = Qt.binding(() => placement.y);
         }
     }
     MouseArea {
@@ -62,14 +65,20 @@ Item {
         hoverEnabled: true
         acceptedButtons: Qt.LeftButton | Qt.RightButton
         drag.target: !pet.character.locked && pressedButtons === Qt.LeftButton ? pet : null
-        drag.minimumX: 0; drag.maximumX: Math.max(0, panel.width - pet.width)
-        drag.minimumY: 0; drag.maximumY: Math.max(0, panel.height - pet.height)
+        drag.minimumX: -100000; drag.maximumX: 100000
+        drag.minimumY: -100000; drag.maximumY: 100000
+        onCanceled: {
+            controller.dragState = ({});
+            pet.x = Qt.binding(() => pet.placement.x);
+            pet.y = Qt.binding(() => pet.placement.y);
+        }
+
         cursorShape: pet.character.locked ? Qt.ArrowCursor : (pressed ? Qt.ClosedHandCursor : Qt.OpenHandCursor)
         onReleased: event => {
             if (event.button === Qt.RightButton)
                 controller.openControls(pet.character.id, panel.screen.name, pet.x + event.x, pet.y + event.y);
             else if (!pet.character.locked)
-                controller.edit(pet.character.id, "move", {x: Math.round(pet.x), y: Math.round(pet.y)});
+                controller.finishMove(pet.character, panel.screen, pet.x, pet.y, pet.x + event.x, pet.y + event.y);
         }
         onWheel: wheel => {
             controller.edit(pet.character.id, "set", {size: Math.max(64, Math.min(640, pet.baseWidth + (wheel.angleDelta.y > 0 ? 16 : -16)))});
