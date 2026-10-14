@@ -1,0 +1,71 @@
+.gitignore
+  s_1e31b4db601939::t_fc659837d92d5b 11
+CHANGELOG.md
+  s_1e31b4db601939::t_cc24618618af27 3-10
+README.md
+  s_1e31b4db601939::t_a24eebe05af9bf 30,75,80,95,98-110
+VERSION
+  s_1e31b4db601939::t_8370ce3213abb2 1
+app.py
+  s_1e31b4db601939::t_b3cc1f41d6490a 2-3
+desktop_cast/__init__.py
+  s_1e31b4db601939::t_d791ceb1f980fe 1
+desktop_cast/app.py
+  s_1e31b4db601939::t_f3095aefb26844 1-410
+desktop_cast/media_tools.py
+  s_1e31b4db601939::t_fe60351c6e5b36 8
+desktop_cast/modifier_bridge.py
+  s_1e31b4db601939::t_27fa7b14996420 6
+desktop_cast/steam_download.py
+  s_1e31b4db601939::t_fa8ddff293310f 9-10
+desktop_cast/store.py
+  s_1e31b4db601939::t_a4516d1c3cf3bc 12
+desktop_cast/tool_ui.py
+  s_1e31b4db601939::t_6a9c5a1b704b97 7,29,41
+desktop_cast/ui.py
+  s_1e31b4db601939::t_fa55a8b759b66a 7,53,106-107,114,119
+desktop_cast/workshop.py
+  s_1e31b4db601939::t_7ccd19e05786c9 9
+desktop_cast/workshop_dialog.py
+  s_1e31b4db601939::t_853d95d7b06215 9-10,179
+docs/packaging.md
+  s_1e31b4db601939::t_bac114d02bc587 14,17
+overlays/Character.qml
+  s_1e31b4db601939::t_6658dc93cc7d9e 16-20,57-58,68-75,81
+overlays/geometry.js
+  s_1e31b4db601939::t_cfa8f15d91a4d9 1-22
+overlays/shell.qml
+  s_1e31b4db601939::t_09f05b2b0bfbc9 1,19-31,55-66,118
+packaging/build.sh
+  s_1e31b4db601939::t_134236fe1ef8fe 7-9,11,15,17,38
+tests/test_controls.py
+  s_1e31b4db601939::t_47bf785ef15c72 2
+tests/test_geometry.py
+  s_1e31b4db601939::t_030588ed8e85a4 1-51
+tests/test_media_tools.py
+  s_1e31b4db601939::t_0ad13b858901b0 5
+tests/test_position.py
+  s_1e31b4db601939::t_ee6e23dd2febd7 1,20,22-24,29
+tests/test_store.py
+  s_1e31b4db601939::t_5c522cd869a674 13
+tests/test_window.py
+  s_1e31b4db601939::t_9b531fa20f31ec 8,30,41
+tests/test_workshop.py
+  s_1e31b4db601939::t_9376c97e506b85 4,26,28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "17b2ead18e884c30cedf09874ab5cb34d05d419a",
+  "prompts": {},
+  "sessions": {
+    "s_1e31b4db601939": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a13c15-9300-73d1-b93a-6d8e91baf12b",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Wolfkid200444 <32025746+Wolfkid200444@users.noreply.github.com>"
+    }
+  }
+}
