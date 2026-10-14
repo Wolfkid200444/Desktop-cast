@@ -6,6 +6,8 @@ mkdir -p artifacts
 python -m PyInstaller --noconfirm --clean --name desktop-cast \
   --add-data 'Character.qml:.' --add-data 'ControlPanel.qml:.' --add-data 'shell.qml:.' \
   --add-data 'theme.qss:.' --add-data 'VERSION:.' --add-data 'packaging/desktop-cast.svg:.' \
+  --add-data 'LICENSE:.' --copy-metadata PySide6 --copy-metadata PySide6_Essentials \
+  --copy-metadata PySide6_Addons --copy-metadata shiboken6 --copy-metadata Pillow \
   --hidden-import steam_download app.py
 mkdir -p build/AppDir/usr/bin build/AppDir/usr/share/applications build/AppDir/usr/share/icons/hicolor/scalable/apps
 cp -a dist/desktop-cast/. build/AppDir/usr/bin/
