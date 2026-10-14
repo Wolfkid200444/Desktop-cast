@@ -1,0 +1,95 @@
+.github/workflows/build.yml
+  s_1e31b4db601939::t_9bb05ca822927e 1-65
+.gitignore
+  s_1e31b4db601939::t_fa69ad492a2061 1-11
+CHANGELOG.md
+  s_1e31b4db601939::t_b15da0098eba05 1-13
+Character.qml
+  s_1e31b4db601939::t_edb044b3cedc66 1-79
+ControlPanel.qml
+  s_1e31b4db601939::t_ddc362ca716d9d 1-175
+LICENSE
+  s_1e31b4db601939::t_62f517aa2c2830 1-674
+README.md
+  s_1e31b4db601939::t_91d0cc79dbcb0f 1-98
+VERSION
+  s_1e31b4db601939::t_d1523a221646ff 1
+app.py
+  s_1e31b4db601939::t_1219765a57b345 1-388
+desktop-cast.desktop
+  s_1e31b4db601939::t_237a90ca59d3a8 1-9
+kwin-modifiers/CMakeLists.txt
+  s_1e31b4db601939::t_72b0e26a97abfd 1-9
+kwin-modifiers/bridge.cpp
+  s_1e31b4db601939::t_e7c14c3206627e 1-57
+kwin-modifiers/install.sh
+  s_1e31b4db601939::t_b2071b23288794 1-13
+kwin-modifiers/package/contents/ui/bridge/qmldir
+  s_1e31b4db601939::t_b228f212f466d3 1
+kwin-modifiers/package/contents/ui/main.qml
+  s_1e31b4db601939::t_49e35217ffeeec 1-9
+kwin-modifiers/package/metadata.json
+  s_1e31b4db601939::t_79ba16c00e91d9 1-12
+media_tools.py
+  s_1e31b4db601939::t_8728041b120c09 1-59
+modifier_bridge.py
+  s_1e31b4db601939::t_23638fcfc09517 1-65
+packaging/README.md
+  s_1e31b4db601939::t_2c333b46c1b67c 1-23
+packaging/build.sh
+  s_1e31b4db601939::t_5d248126004b0e 1-46
+packaging/desktop-cast.desktop
+  s_1e31b4db601939::t_94ca5919ab6b3a 1-9
+packaging/desktop-cast.svg
+  s_1e31b4db601939::t_61e07674bcde5d 1-7
+requirements-build.txt
+  s_1e31b4db601939::t_fb0d33c78b6ec1 1-2
+requirements.txt
+  s_1e31b4db601939::t_c9ad5cc0548445 1-2
+run.sh
+  s_1e31b4db601939::t_43135f2c832493 1-5
+shell.qml
+  s_1e31b4db601939::t_a5492484ae3efa 1-158
+steam_download.py
+  s_1e31b4db601939::t_5031fe67cb09a0 1-64
+store.py
+  s_1e31b4db601939::t_e9c8e02c97478e 1-134
+test_controls.py
+  s_1e31b4db601939::t_15fd42fea13b0f 1-17
+test_media_tools.py
+  s_1e31b4db601939::t_54130d1791aa9f 1-21
+test_position.py
+  s_1e31b4db601939::t_0a0772f6aac399 1-39
+test_store.py
+  s_1e31b4db601939::t_422538e75fee0f 1-46
+test_window.py
+  s_1e31b4db601939::t_f0f1c302a79f38 1-49
+test_workshop.py
+  s_1e31b4db601939::t_0e4a5cfb246c3f 1-34
+theme.qss
+  s_1e31b4db601939::t_a40722e2feac6a 1-37
+tool_ui.py
+  s_1e31b4db601939::t_cb64eecb02c52e 1-82
+ui.py
+  s_1e31b4db601939::t_2fc747b02e7edf 1-125
+workshop.py
+  s_1e31b4db601939::t_69bd4798aae6c0 1-103
+workshop_dialog.py
+  s_1e31b4db601939::t_98bd95826991ac 1-223
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "71a64372b0bdda7192a8331147081ad5cc4cb922",
+  "prompts": {},
+  "sessions": {
+    "s_1e31b4db601939": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a13c15-9300-73d1-b93a-6d8e91baf12b",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Wolfkid200444 <32025746+Wolfkid200444@users.noreply.github.com>"
+    }
+  }
+}
